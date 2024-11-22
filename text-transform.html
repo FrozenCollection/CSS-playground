@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<!-- from MDN doc -->
+<main>
+    <p>LONDON. Michaelmas Term Lately Over, And The Lord Chancellor Sitting In Lincoln's Inn Hall.</p>
+
+    <p>Σ Is A Greek Letter And Appears In ΟΔΥΣΣΕΥΣ. Θα Πάμε Στο "Θεϊκό Φαΐ" Ή Στη "Νεράιδα"</p>
+    
+    <div class="controls">
+        <h4>text-transform</h4>
+        <div id="text-transform"></div>
+    </div>
+</main>
+
+<style>
+
+p {
+    margin: 0;
+}
+      
+code, output {
+    font-family: 'Menlo';
+    font-size: smaller;
+}
+</style>
+
+<script>
+
+const paragraphs = Array.of(document.getElementsByTagName("p"));
+
+new ChoiceInput("text-transform", 
+        ["none", "capitalize", "uppercase", "lowercase", "full-width"],
+        (value) => paragraphs.forEach((par) => par.style.textTransform = value)
+)
+
+</script>

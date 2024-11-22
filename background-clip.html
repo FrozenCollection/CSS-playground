@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<main>    
+    <div class=box>
+        The <code>background-clip</code> <a href="#">CSS</a> property sets whether an element's background extends underneath its border box, padding box, content box<span>, or even text</span>
+    </div>
+
+    <div class="controls">
+        <h4>background-clip: </h4>
+        <div id="background-clip"></div>
+    </div>
+</main>
+
+<link rel="stylesheet" href="./inputs.css">
+<script src="./inputs.js"></script>
+
+<style>
+
+.box {
+    width: 200px;
+    background-color: lightblue;
+    border: 10px dashed darkcyan;
+    padding: 16px;
+    margin: 0 auto;
+}
+
+span {
+    color: transparent;
+}
+
+.controls {
+    margin: 12px auto 0;
+    width: fit-content;
+}
+</style>
+
+<script>
+
+const box = document.querySelector(".box");
+
+new ChoiceInput("background-clip", 
+    ["border-box", "padding-box", "content-box", "text"],
+    bindStyle(box, "backgroundClip"))
+
+
+
+
+</script>
