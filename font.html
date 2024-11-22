@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<main>
+    <div class="controls">
+        <h4>font-style</h4>
+        <div id="font-style"></div>
+        <h4>font-weight</h4>
+        <div id="font-weight"></div>
+        <h4>font-variant</h4>
+        <div id="font-variant"></div>
+        <h4>font-family</h4>
+        <div id="font-family"></div>
+        <h4>font-size</h4>
+        <div id="font-size"></div>
+    
+        <datalist id="font-family-list">
+            <option value="Arial"></option>
+            <option value="courier"></option>
+            <option value="Courier New"></option>
+            <option value="Consolas"></option>
+            <option value="Helvitica"></option>
+            <option value="Georgia"></option>
+            <option value="serif"></option>
+            <option value="sans-serif"></option>
+            <option value="monospace"></option>
+            <option value="cursive"></option>
+            <option value="fantasy"></option>
+            <option value="system-ui"></option>
+        </datalist>
+    </div>
+    
+    <p>The font CSS shorthand property sets all the different properties of an element's font. Alternatively, it sets an element's font to a system font. As with any shorthand property, any individual value that is not specified is set to its corresponding initial value (possibly overriding values previously set using non-shorthand properties).</p>
+</main>
+
+<link rel="stylesheet" href="./inputs.css">
+<script src="./inputs.js"></script>
+
+<style>
+    p {
+        width: 400px;
+    }
+</style>
+
+<script>
+
+
+let targetElement = document.querySelector("p");
+
+new ChoiceInput('font-style', ['normal', 'italic', 'oblique'],
+                bindStyle(targetElement, 'fontStyle'));
+new ChoiceInput('font-variant', ['normal', 'small-caps'],
+                bindStyle(targetElement, 'fontVariant'));
+new ChoiceInput('font-weight', ['normal', 'bold', 'lighter'],
+                bindStyle(targetElement, 'fontWeight'));
+new TextInput('font-family', bindStyle(targetElement, 'fontFamily'),
+                {'datalist': "font-family-list"});
+new LengthInput('font-size', bindStyle(targetElement, 'fontSize'),
+                {'initValue': 16});
+
+</script>
+
+

@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>文本装饰示例</title>
+    <style>
+        main {
+            max-width: 30rem;
+        }
+        .controls {
+            margin-bottom: 20px;
+        }
+        .controls label {
+            margin-right: 15px;
+            font-size: 16px;
+        }
+        #demo {
+            font-size: 18px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        h5 { 
+            font-size: 16px;
+            margin: 0.5em 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <main>
+        <p id="demo">Text decorations are drawn across descendant text elements. This means that if an element specifies a text decoration, then a child element can't remove the decoration.</p>
+
+        <h5>text-decoration-line</h5>
+        <div class="controls">
+            <label>
+                <input type="checkbox" id="none">none
+            </label>
+            <label>
+                <input type="checkbox" id="underline">underline
+            </label>
+            <label>
+                <input type="checkbox" id="overline">overline
+            </label>
+            <label>
+                <input type="checkbox" id="line-through">line-through
+            </label>
+        </div>
+        <h5>text-decoration-style</h5>
+        <div class="controls">
+            <label>
+                <input type="radio" name="decoration-style" value="solid" checked>solid
+            </label>
+            <label>
+                <input type="radio" name="decoration-style" value="double">double
+            </label>
+            <label>
+                <input type="radio" name="decoration-style" value="dotted">dotted
+            </label>
+            <label>
+                <input type="radio" name="decoration-style" value="dashed">dashed
+            </label>
+            <label>
+                <input type="radio" name="decoration-style" value="wavy">wavy
+            </label>
+        </div>
+        <h5>text-decoration-color</h5>
+        <div class="controls">
+            <input type="color" id="decoration-color" value="#000000">
+            <span id="color-value">#000000</span>
+        </div>
+        <div class="controls">
+            <h5>text-decoration-thickness</h5>
+            <input type="number" id="thickness-value" min="1" value="1">
+            <select id="thickness-unit">
+                <option value="px">px</option>
+                <option value="em">em</option>
+                <option value="rem">rem</option>
+                <option value="%">%</option>
+                <option value="vw">vw</option>
+                <option value="vh">vh</option>
+                <option value="vmin">vmin</option>
+                <option value="vmax">vmax</option>
+            </select>
+        </div>
+    </main>
+
+<script>
+    // 获取复选框和示例文本元素
+    const underlineCheckbox = document.getElementById('underline');
+    const overlineCheckbox = document.getElementById('overline');
+    const noneCheckbox = document.getElementById('none');
+    const lineThroughCheckbox = document.getElementById('line-through');
+    const demoParagraph = document.getElementById('demo');
+
+    /**
+     * @brief 更新文本的 `text-decoration-line`
+     */
+    function updateTextDecorationLine() {
+        let decorations = [];
+
+        if (noneCheckbox.checked) {
+            decorations = ['none'];
+        } else {
+            if (underlineCheckbox.checked) {
+                decorations.push('underline');
+            }
+            if (overlineCheckbox.checked) {
+                decorations.push('overline');
+            }
+            if (lineThroughCheckbox.checked) {
+                decorations.push('line-through');
+            }
+        }
+
+        demoParagraph.style.textDecorationLine = 
+            decorations.length ? decorations.join(' ') : 'none';
+    }
+
+    noneCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            underlineCheckbox.checked = false;
+            overlineCheckbox.checked = false;
+            lineThroughCheckbox.checked = false;
+            updateTextDecorationLine();
+        } else {
+            updateTextDecorationLine();
+        }
+    });
+    for (let checkbox of [underlineCheckbox,
+                          overlineCheckbox,
+                          lineThroughCheckbox,
+                         ]) {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                noneCheckbox.checked = false;
+            }
+            updateTextDecorationLine();
+        });
+    }
+    updateTextDecorationLine();
+
+
+    const styleRadioButtons = document.getElementsByName('decoration-style');
+
+    function updateTextDecorationStyle() {
+        let selectedStyle = 'solid';
+        styleRadioButtons.forEach(radio => {
+            if (radio.checked) {
+                selectedStyle = radio.value;
+            }
+        });
+        demoParagraph.style.textDecorationStyle = selectedStyle;
+    }
+    
+    // 为每个单选按钮绑定事件监听器
+    styleRadioButtons.forEach(radio => {
+        radio.addEventListener('change', updateTextDecorationStyle);
+    });
+    
+
+
+
+    const colorPicker = document.getElementById('decoration-color');
+    const colorValueDisplay = document.getElementById('color-value');
+
+    function updateTextDecorationColor() {
+        const selectedColor = colorPicker.value;
+        demoParagraph.style.textDecorationColor = selectedColor;
+        colorValueDisplay.textContent = selectedColor.toUpperCase();
+    }
+    colorPicker.addEventListener('input', updateTextDecorationColor);
+
+    const thicknessValueInput = document.getElementById('thickness-value');
+    const thicknessUnitSelect = document.getElementById('thickness-unit');
+
+    function updateTextDecorationThickness() {
+        const value = thicknessValueInput.value;
+        const unit = thicknessUnitSelect.value;
+    
+        if (value >= 1) {
+            demoParagraph.style.textDecorationThickness = `${value}${unit}`;
+        } else {
+            demoParagraph.style.textDecorationThickness = '1px';
+        }
+    }
+
+    thicknessValueInput.addEventListener('input', updateTextDecorationThickness);
+    thicknessUnitSelect.addEventListener('change', updateTextDecorationThickness);
+</script>
+
+</body>
+</html>

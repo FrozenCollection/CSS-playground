@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container {
+            border: 2px solid blue;
+        }
+        p {
+            margin: 0;
+            padding: 0.5em;
+        }
+        section {
+            text-align: center;
+            margin-top: 0.5em;
+        }
+        main {
+            max-width: 20em;
+        }
+    </style>    
+</head>
+<body>
+
+    <main>
+        <div class="container">
+            <p>The <code>text-align</code> <a href="#">CSS</a> property sets the horizontal alignment of the inline-level content inside a block element or table-cell box. This means it works like <code>vertical-align</code> but in the horizontal direction. The <code>text-align</code> property is specified as a single keyword from the list below.</p>
+        </div>
+        <section>
+            <button>left</button>
+            <button>right</button>
+            <button>center</button>
+            <button>justify</button>
+        </section>
+    </main>
+        
+<script>
+    const paragraph = document.querySelector('p');
+    const buttons = document.querySelectorAll('button');
+    for (let button of buttons) {
+        button.addEventListener('click', function() {
+            paragraph.style.textAlign = this.textContent.toLowerCase();
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<main>
+    <p>The <code>text-indent</code> CSS property sets the length of empty space (indentation) that is put before lines of text in a block. Horizontal spacing is with respect to the left (or right, for right-to-left layout) edge of the containing block-level element's content box.</p>
+    <div class="controls">
+        <div id="text-indent"></div>
+    </div>
+</main>
+
+<link rel="stylesheet" href="./inputs.css">
+<script src="./inputs.js"></script>
+
+<style>
+    main {
+        padding: 0 4em;
+        max-width: 30em;
+    }
+</style>
+
+<script>
+const demoParagraph = document.querySelector('p');
+new LengthInput("text-indent", bindStyle(demoParagraph, "textIndent"), {"initValue": 0});
+</script>

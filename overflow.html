@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<style>
+    section {
+        text-align: center;
+    }
+    #demo {
+        box-sizing: border-box;
+        border: 3px solid blue;
+        margin: 26px 0;
+        width: 260px; 
+        height: 108px; 
+        padding: 1em;
+    }
+
+</style>
+
+<div class="controls">
+    <button>visible</button>
+    <button>hidden</button>
+    <button>scroll</button>
+    <button>auto</button>
+</div>
+    
+    <div id="demo"></div>
+
+<script>
+    let targetElement = document.getElementById('demo');
+    let htmlContents = {
+        'visible': `Overflow content is not clipped and may be visible outside the element's padding box. The element box is not a <a href="#">scroll container</a>. This is the default value of the <code>overflow</code> property.`,
+        'hidden': `Overflow content is clipped at the element's padding box. There are no scroll bars, and the clipped content is not visible (i.e., clipped content is hidden), but the content still exists. User agents do not add scroll bars and also do not allow users to view the content outside the clipped region by actions such as dragging on a touch screen or using the scroll wheel on a mouse. The content can be scrolled programmatically (for example, by setting the value of the <code>scrollLeft</code> property or the <code>scrollTo()</code> method), in which case the element box is a scroll container.`,
+        'scroll': `Overflow content is clipped at the element's padding box, and overflow content can be scrolled into view using scroll bars. User agents display scroll bars in both horizontal and vertical directions if only one value is set, whether or not any content is overflowing or clipped. The use of this keyword, therefore, can prevent scroll bars from appearing and disappearing as content changes. Printers may still print overflowing content. The element box is a scroll container.`,
+        'auto': `Overflow content is clipped at the element's padding box, and overflow content can be scrolled into view. Unlike <code>scroll</code>, user agents display scroll bars only if the content is overflowing and hide scroll bars by default. If content fits inside the element's padding box, it looks the same as with <code>visible</code> but still establishes a new formatting context. The element box is a scroll container.`
+    };
+    for (let elem of document.getElementsByTagName('button')) {
+        elem.addEventListener('click', function() {
+            let overflowBehavior = this.textContent.toLowerCase();
+            targetElement.innerHTML = htmlContents[overflowBehavior];
+            targetElement.style.overflow = overflowBehavior;
+        });
+    }
+    window.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('button').click();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+
+<main>
+    <article>
+    </article>
+    
+    <div class="controls">
+        <p>
+            <h4>background-position-x</h4>
+            <div id="background-position-x"></div>
+            <h4>background-position-y</h4>
+            <div id="background-position-y"></div>
+        </p>
+    </div>
+</main>
+
+<style>
+
+article {
+    width: 600px;
+    height: 300px;
+    background-image: url(./04-overflow-x.png);
+
+}
+
+
+</style>
+
+<script src="./inputs.js"></script>
+<link rel="stylesheet" href="./inputs.css">
+<script>
+
+let target = document.querySelector('article');
+
+new LengthInput("background-position-x", 
+            (value) => target.style.backgroundPositionX = value);
+new LengthInput("background-position-y",
+            (value) => target.style.backgroundPositionX = value);
+</script>
